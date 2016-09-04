@@ -1,6 +1,7 @@
 # Stanza
 Stanza is a highly extensible cli that accelerates development workflows.
-https://poetic.github.io/stanza-cli/
+([Documentaion](https://poetic.github.io/stanza-cli/) |
+[GitHub](https://github.com/poetic/stanza-cli))
 
 ## Features
 * Command-line interface powered by
