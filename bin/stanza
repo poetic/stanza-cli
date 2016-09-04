@@ -1,2 +1,7 @@
 #!/usr/bin/env node
 
+const stanza = require('./stanza.bundle');
+const extensionDiscovery = require('./lib/extension-discovery.js');
+
+extensionDiscovery(stanza);
+stanza.run();

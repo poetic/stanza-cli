@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+const jsDocPlugin = require('jsdoc-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -32,4 +33,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new jsDocPlugin({
+      conf: './jsdoc.conf.json'
+    })
+  ],
 };

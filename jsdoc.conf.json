@@ -1,0 +1,16 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "templates": {
+    "systemName": "Stanza Docs",
+    "copyright": "&copy; 2016 Poetic Systems, LLC - All rights reserved.",
+    "theme": "cosmo",
+    "inverseNav": true
+  },
+  "opts": {
+    "template": "./node_modules/ink-docstrap/template",
+    "destination": "./docs",
+    "readme": "README.md"
+  }
+}
