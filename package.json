@@ -1,7 +1,10 @@
 {
   "name": "stanza",
   "version": "2.0.0",
-  "description": "Highly extensible cli that accelerates development workflows",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "description": "Stanza is a highly extensible cli that accelerates development workflows.",
   "private": true,
   "author": "Matthew Hager"
 }
