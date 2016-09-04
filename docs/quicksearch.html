@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"global.html":{"id":"global.html","title":"Global","body":" Stanza Docs Global registerCommandregisterGeneratorrun Global Methods registerCommand(commandOptions) Register Commands with Stanza Parameters: Name Type Description commandOptions Object Pattern, description and action of command registerGenerator(path) Register Yeoman Generator with Stanza Parameters: Name Type Description path String Absolute path to Yeoman Generator run() Stanza Run × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" Stanza Docs Global registerCommandregisterGeneratorrun StanzaStanza is a highly extensible cli that accelerates development workflows. Features Command-line interface powered by commander.js Code generation/scaffolding powered by Yeoman Powerful extension system that comprises commands, generators, build tools, servers, testing, linting, etc... Stanza extension generator to help you quickly extend stanza (yo dawg) View the roadmap to see a list of current and planned features. Requirements node &gt;= 6.0.0 Installationnpm install -g poetic/sanza-cliUsageAfter installation the stanza command will be available to you. You can call stanza [command] --help to find out more about all of the following commands. generatestanza generate:extension [extension-name]This will create a new folder extension-name, initialize a git repo in it, add an extension project structure and install any necessary npm dependencies. × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
