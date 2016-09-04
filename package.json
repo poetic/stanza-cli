@@ -11,7 +11,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "fix": "eslint . --fix",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "gh-pages": "gh-pages -d docs"
   },
   "description": "Stanza is a highly extensible cli that accelerates development workflows.",
   "private": true,
@@ -26,6 +27,7 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
+    "gh-pages": "^0.11.0",
     "ink-docstrap": "^1.3.0",
     "jsdoc-webpack-plugin": "0.0.1",
     "json-loader": "^0.5.4",
