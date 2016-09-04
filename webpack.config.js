@@ -1,4 +1,5 @@
-var nodeExternals = require('webpack-node-externals');
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: './src/stanza.js',
