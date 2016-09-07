@@ -3,3 +3,4 @@ node_modules
 npm-debug.log
 bin/stanza.bundle.js
 docs
+lib

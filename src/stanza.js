@@ -1,32 +1,74 @@
-import _ from 'lodash';
 import commander from 'commander';
+import path from 'path';
+import packageJson from '../package.json';
+import pkgConf from 'pkg-conf';
+import { registerExtensions } from './imports/extensions';
 import yeoman from 'yeoman-environment';
-import coreCommands from './core-commands';
 
-const env = yeoman.createEnv();
-const commandExtensions = [];
+class Stanza {
+  constructor() {
+    this.setAppRoot();
+
+    this.extensionCommands = [];
+    this.yeomanEnv = yeoman.createEnv();
+
+    this.registerCommand = this.registerCommand.bind(this);
+    this.registerGenerator = this.registerGenerator.bind(this);
+  }
+
+  registerCommand(command) {
+    this.extensionCommands.push(command);
+  }
+
+  registerGenerator(path) {
+    // this.env.register(path);
+  }
+
+  setAppRoot() {
+    let appRootPath = '';
+
+    const packageConfig = pkgConf.sync('keywords');
+    const isStanzaProject = Object.keys(packageConfig)
+      .map(key => packageConfig[key])
+      .includes('stanza-project');
+
+    const packageJsonPath = isStanzaProject
+      ? pkgConf.filepath(packageConfig)
+      : false;
+
+    if (!packageJsonPath) {
+      appRootPath = process.cwd(); // set this to global
+    } else {
+      appRootPath = path.dirname(packageJsonPath);
+    }
+
+    global.APP_ROOT_PATH = appRootPath;
+
+    this.appRootPath = appRootPath;
+  }
+}
 
 /**
- * Stanza Run
+ * Stanza entry point. Aggregates all extensions and runs commander.
  *
- * @name run
- * @function
+ * @function stanza
+ * @returns {undefined}
  */
-module.exports.run = () => {
-  const commands = [
-    ...coreCommands,
-    ...commandExtensions,
-  ];
+export default function initStanza() {
+  const stanza = new Stanza();
+
+  registerExtensions('stanza-extension', stanza, 'register', true);
 
   commander
-  .description('Stanza Extentendable CLI Tool');
+    .version(packageJson.version)
+    .description(packageJson.description);
 
-  _.each(commands, command => {
+  stanza.extensionCommands.forEach(command => {
     const { action, description, pattern } = command;
     const additionalParams = {};
 
     if (pattern.includes('generate')) {
-      additionalParams.env = env;
+      console.log('generate generator');
     }
 
     commander
@@ -36,27 +78,4 @@ module.exports.run = () => {
   });
 
   commander.parse(process.argv);
-};
-
-/**
- * Register Yeoman Generator with Stanza
- *
- * @name registerGenerator
- * @function
- * @param {String} path Absolute path to Yeoman Generator
- */
-module.exports.registerGenerator = path => {
-  env.register(path);
-};
-
-
-/**
- * Register Commands with Stanza
- *
- * @name registerCommand
- * @function
- * @param {Object} commandOptions Pattern, description and action of command
- */
-module.exports.registerCommand = commandOptions => {
-  commandExtensions.push(commandOptions);
-};
+}

@@ -9,8 +9,10 @@
     "inverseNav": true
   },
   "opts": {
-    "template": "./node_modules/ink-docstrap/template",
-    "destination": "./docs",
+    "recurse": true,
+    "package": "package.json",
+    "template": "node_modules/ink-docstrap/template",
+    "destination": "docs",
     "readme": "README.md"
   }
 }
