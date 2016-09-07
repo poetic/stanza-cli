@@ -1,12 +1,22 @@
 import commander from 'commander';
-import findUp from 'find-up';
-import path from 'path';
 import packageJson from '../package.json';
+import path from 'path';
 import pkgConf from 'pkg-conf';
-import { registerExtensions } from './imports/extensions';
 import yeoman from 'yeoman-environment';
+import { registerExtensions } from './imports/extensions';
 
+
+/**
+ * Class representing Stanza
+ */
 class Stanza {
+  /**
+   * When Stanza is instantiated, set the global app root, create the Yeoman envorinment,
+   * and bind this to register functions.
+   *
+   * @name constructor
+   * @function
+   */
   constructor() {
     this.setAppRoot();
 
@@ -17,14 +27,35 @@ class Stanza {
     this.registerGenerator = this.registerGenerator.bind(this);
   }
 
+  /**
+   * Register commands with Commander
+   *
+   * @name registerCommand
+   * @function
+   * @param {Object} command The pattern, description and action function of the command
+   */
   registerCommand(command) {
     this.extensionCommands.push(command);
   }
 
+  /**
+   * Register Yeoman generators with Stanza
+   *
+   * @name registerGenerator
+   * @function
+   * @param {string} generatorPath Path to Yeoman generator
+   * @param {string} namespace Register the generator under this namespace
+   */
   registerGenerator(generatorPath, namespace) {
     this.yeomanEnv.register(generatorPath, namespace);
   }
 
+  /**
+   * Determine where Stanza is running and set the APP_ROOT_PATH appropriatly
+   *
+   * @name setAppRoot
+   * @function
+   */
   setAppRoot() {
     let appRootPath = '';
 
