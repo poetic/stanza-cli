@@ -69,7 +69,7 @@ export default function initStanza() {
     const additionalParams = {};
 
     if (pattern.includes('generate')) {
-      console.log('generate generator');
+      additionalParams.yeomanEnv = stanza.yeomanEnv;
     }
 
     commander
