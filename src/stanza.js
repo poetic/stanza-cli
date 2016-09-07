@@ -1,4 +1,5 @@
 import commander from 'commander';
+import findUp from 'find-up';
 import path from 'path';
 import packageJson from '../package.json';
 import pkgConf from 'pkg-conf';
@@ -20,8 +21,8 @@ class Stanza {
     this.extensionCommands.push(command);
   }
 
-  registerGenerator(path) {
-    // this.env.register(path);
+  registerGenerator(generatorPath, namespace) {
+    this.yeomanEnv.register(generatorPath, namespace);
   }
 
   setAppRoot() {
