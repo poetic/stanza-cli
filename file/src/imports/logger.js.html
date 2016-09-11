@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/imports/logger.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -39,33 +39,15 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="stanza">Stanza</h1>
-<p>Stanza is a highly extensible cli that accelerates development workflows.
-(<a href="https://poetic.github.io/stanza-cli/">Documentaion</a> |
-<a href="https://github.com/poetic/stanza-cli">GitHub</a>)</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>Command-line interface powered by
-<a href="https://github.com/tj/commander.js/">commander.js</a></li>
-<li>Code generation/scaffolding powered by
-<a href="https://github.com/yeoman/yeoman">Yeoman</a></li>
-<li>Powerful extension system that comprises commands, generators, build tools,
-servers, testing, linting, etc...</li>
-<li>Stanza extension generator to help you quickly extend stanza (<a href="http://i.imgur.com/2gqiift.jpg">yo
-dawg</a>)</li>
-</ul>
-<p>View the <a href="ROADMAP.md">roadmap</a> to see a list of current and planned features.</p>
-<h2 id="requirements">Requirements</h2>
-<ul>
-<li>node &gt;= 6.0.0</li>
-</ul>
-<h2 id="installation">Installation</h2>
-<pre><code><code class="source-code prettyprint">npm install -g poetic/sanza-cli</code>
-</code></pre><h2 id="usage">Usage</h2>
-<p>After installation the <code>stanza</code> command will be available to you.</p>
-<p>You can call <code>stanza [command] --help</code> to find out more about all of the
-following commands.</p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/imports/logger.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import winston from &apos;winston&apos;;
+
+// TODO: Configure logger
+const logger = winston;
+
+export default logger;
+</code></pre>
+
 </div>
 
 <footer class="footer">

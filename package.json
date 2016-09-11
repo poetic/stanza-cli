@@ -1,0 +1,40 @@
+{
+  "name": "stanza",
+  "version": "2.0.0",
+  "description": "Stanza is a highly extensible cli that accelerates development workflows.",
+  "main": "./src/stanza.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "bin": {
+    "stanza": "bin/stanza"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "fix": "eslint src --fix",
+    "docs": "esdoc -c .esdoc.json",
+    "gh-pages": "gh-pages -d docs"
+  },
+  "private": true,
+  "author": "Poetic Systems",
+  "devDependencies": {
+    "esdoc": "^0.4.8",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "gh-pages": "^0.11.0"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "commander": "^2.9.0",
+    "find-up": "^1.1.2",
+    "glob": "^7.0.6",
+    "global-modules": "^0.2.3",
+    "pkg-conf": "^1.1.3",
+    "resolve": "^1.1.7",
+    "winston": "^2.2.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "coverage": "80%",
+  "expectCount": 5,
+  "actualCount": 4,
+  "files": {
+    "src/stanza.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/imports/logger.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/imports/register-extensions.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}
