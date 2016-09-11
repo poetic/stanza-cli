@@ -7,10 +7,6 @@ import resolve from 'resolve';
 import logger from './logger';
 
 /**
- * @module extensions
- */
-
-/**
  * Searches project dependencies for modules that contain the passed keyword
  * with an optional parameter to search globally installed modules as well.
  * Passes an object into the register function of the resultant extensions
@@ -23,27 +19,27 @@ import logger from './logger';
  * used during extension registration.
  * @param {boolean} [includeGlobal=false] - Determines if global packages
  * should be registered.
- * @returns {undefined}
  */
-export default (keyword, object, registerFunction = 'register', includeGlobal =
-  false) => {
-
+const registerExtensions = (keyword, object, registerFunction = 'register',
+  includeGlobal = false) => {
   const dependencyNames = [
     ...Object.keys(pkgConf.sync('dependencies')),
-    ...Object.keys(pkgConf.sync('devDependencies'))
+    ...Object.keys(pkgConf.sync('devDependencies')),
   ];
 
   const dependencies = dependencyNames.map(name => {
-    try{
+    try {
       return resolve.sync(name);
     } catch (error) {
       logger.info(`Error trying to resolve dependency ${name}. Continuing...`);
     }
+
+    return name;
   }).filter(Boolean);
 
   if (includeGlobal) {
-    const globalPackages = glob.sync('*/package.json', {cwd: globalModules,
-      realpath: true});
+    const globalPackages = glob.sync('*/package.json', { cwd: globalModules,
+      realpath: true });
 
     dependencies.push(...globalPackages);
   }
@@ -51,13 +47,15 @@ export default (keyword, object, registerFunction = 'register', includeGlobal =
   dependencies.forEach(dependency => {
     const dependencyPath = path.dirname(dependency);
     const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });
-    const pkg = require(packageJsonPath);
+    const pkg = require(packageJsonPath); // eslint-disable-line global-require
 
     if (pkg.keywords && pkg.keywords.includes(keyword)) {
       const extensionPath = path.dirname(packageJsonPath);
-      const extension = require(extensionPath);
+      const extension = require(extensionPath); // eslint-disable-line global-require
 
       extension[registerFunction](object, dependencyPath);
     }
   });
 };
+
+export default registerExtensions;

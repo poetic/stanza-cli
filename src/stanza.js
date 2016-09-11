@@ -19,7 +19,6 @@ export default class Stanza {
 
   /**
    * Runs the command line interface.
-   * @returns {undefined}
    */
   cli() {
     commander.parse(process.argv);

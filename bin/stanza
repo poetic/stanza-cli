@@ -1,2 +1,3 @@
 #!/usr/bin/env node
-(new (require('../lib/stanza').default)).cli();
+require('babel-register');
+(new (require('../src/stanza').default)).cli();
