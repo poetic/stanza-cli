@@ -28,11 +28,3 @@ After installation the `stanza` command will be available to you.
 
 You can call `stanza [command] --help` to find out more about all of the
 following commands.
-
-### generate
-```
-stanza generate:extension [extension-name]
-```
-
-This will create a new folder `extension-name`, initialize a git repo in it, add
-an extension project structure and install any necessary npm dependencies.
