@@ -1,80 +1,56 @@
-import path from 'path';
+import commander from 'commander';
 import pkgConf from 'pkg-conf';
-import yeoman from 'yeoman-environment';
+
+import packageJson from '../package.json';
+import registerExtensions from './imports/register-extensions';
 
 /**
  * Class representing Stanza
-* */
-class Stanza {
+ */
+export default class Stanza {
   /**
-   * When Stanza is instantiated, set the global app root, create the Yeoman envorinment,
-   * and bind this to register functions.
    *
-   * @memberof Stanza
-   * @name constructor
+   *
+   * @returns {undefined}
    */
   constructor() {
-    this.setAppRoot();
+    commander
+      .version(packageJson.version)
+      .description(packageJson.description);
 
-    this.extensionCommands = [];
-    this.yeomanEnv = yeoman.createEnv();
-
-    this.registerCommand = this.registerCommand.bind(this);
-    this.registerGenerator = this.registerGenerator.bind(this);
+    registerExtensions('stanza-extension', this, 'register', true);
   }
 
   /**
-   * Register commands with Commander
+   * Runs the command line interface.
    *
-   * @memberof Stanza
-   * @name registerCommand
-   * @param {Object} command The pattern, description and action function of the command
+   * @returns {undefined}
    */
-  registerCommand(command) {
-    this.extensionCommands.push(command);
+  cli() {
+    commander.parse(process.argv);
   }
 
   /**
-   * Register Yeoman generators with Stanza
+   * Determines the project's root path by finding the nearest package.json and
+   * checking it for the "stanza-project" keyword.
    *
-   * @memberof Stanza
-   * @name registerGenerator
-   * @param {string} generatorPath Path to Yeoman generator
-   * @param {string} namespace Register the generator under this namespace
+   * @returns {string|false} project's root path or false if not in a project.
    */
-  registerGenerator(generatorPath, namespace) {
-    this.yeomanEnv.register(generatorPath, namespace);
-  }
-
-  /**
-   * Determine where Stanza is running and set the APP_ROOT_PATH appropriatly
-   *
-   * @memberof Stanza
-   * @name setAppRoot
-   */
-  setAppRoot() {
-    let appRootPath = '';
+  get projectRoot() {
+    // memoize
+    if(typeof this._projectRoot !== 'undefined') {
+      return this._projectRoot;
+    }
 
     const packageConfig = pkgConf.sync('keywords');
     const isStanzaProject = Object.keys(packageConfig)
       .map(key => packageConfig[key])
       .includes('stanza-project');
 
-    const packageJsonPath = isStanzaProject
-      ? pkgConf.filepath(packageConfig)
+    this._projectRoot = isStanzaProject
+      ? path.dirname(pkgConf.filepath(packageConfig))
       : false;
 
-    if (!packageJsonPath) {
-      appRootPath = process.cwd(); // set this to global
-    } else {
-      appRootPath = path.dirname(packageJsonPath);
-    }
-
-    global.APP_ROOT_PATH = appRootPath;
-
-    this.appRootPath = appRootPath;
+    return this._projectRoot;
   }
 }
-
-export default Stanza;
-

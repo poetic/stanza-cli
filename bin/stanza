@@ -1,3 +1,2 @@
 #!/usr/bin/env node
-
-require('../lib/init-stanza').default();
+(new (require('../lib/stanza').default)).cli();

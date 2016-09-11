@@ -30,17 +30,15 @@
     "eslint-plugin-react": "^6.2.0",
     "gh-pages": "^0.11.0",
     "ink-docstrap": "^1.3.0",
-    "jsdoc": "^3.4.0",
-    "stanza-extension-generator": "^0.0.0"
+    "jsdoc": "^3.4.0"
   },
   "dependencies": {
-    "app-root-path": "^1.3.0",
     "commander": "^2.9.0",
     "find-up": "^1.1.2",
-    "junk": "^2.0.0",
-    "lodash": "^4.15.0",
+    "glob": "^7.0.6",
+    "global-modules": "^0.2.3",
     "pkg-conf": "^1.1.3",
     "resolve": "^1.1.7",
-    "yeoman-environment": "^1.6.3"
+    "winston": "^2.2.0"
   }
 }
