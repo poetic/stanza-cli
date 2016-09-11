@@ -1,4 +1,4 @@
-# Stanza
+# Stanza [![Documentation Status](https://poetic.github.io/stanza-cli/badge.svg)](https://poetic.github.io/stanza-cli/source.html)
 Stanza is a highly extensible cli that accelerates development workflows.
 ([Documentaion](https://poetic.github.io/stanza-cli/) |
 [GitHub](https://github.com/poetic/stanza-cli))
