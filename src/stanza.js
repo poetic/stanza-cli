@@ -12,6 +12,7 @@ export default class Stanza {
    */
   constructor() {
     this.logger = logger;
+    this.commander = commander;
 
     commander
       .version(packageJson.version)
