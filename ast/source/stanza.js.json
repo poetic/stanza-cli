@@ -607,11 +607,11 @@
                           },
                           {
                             "type": "Literal",
-                            "value": "register",
-                            "raw": "'register'",
+                            "value": true,
+                            "raw": "true",
                             "range": [
                               426,
-                              436
+                              430
                             ],
                             "loc": {
                               "start": {
@@ -620,33 +620,14 @@
                               },
                               "end": {
                                 "line": 17,
-                                "column": 59
-                              }
-                            }
-                          },
-                          {
-                            "type": "Literal",
-                            "value": true,
-                            "raw": "true",
-                            "range": [
-                              438,
-                              442
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 17,
-                                "column": 61
-                              },
-                              "end": {
-                                "line": 17,
-                                "column": 65
+                                "column": 53
                               }
                             }
                           }
                         ],
                         "range": [
                           381,
-                          443
+                          431
                         ],
                         "loc": {
                           "start": {
@@ -655,13 +636,13 @@
                           },
                           "end": {
                             "line": 17,
-                            "column": 66
+                            "column": 54
                           }
                         }
                       },
                       "range": [
                         381,
-                        444
+                        432
                       ],
                       "loc": {
                         "start": {
@@ -670,14 +651,14 @@
                         },
                         "end": {
                           "line": 17,
-                          "column": 67
+                          "column": 55
                         }
                       }
                     }
                   ],
                   "range": [
                     279,
-                    448
+                    436
                   ],
                   "loc": {
                     "start": {
@@ -694,7 +675,7 @@
                 "expression": false,
                 "range": [
                   276,
-                  448
+                  436
                 ],
                 "loc": {
                   "start": {
@@ -711,7 +692,7 @@
               "computed": false,
               "range": [
                 265,
-                448
+                436
               ],
               "loc": {
                 "start": {
@@ -748,8 +729,8 @@
                   "type": "Block",
                   "value": "*\n   * Runs the command line interface.\n   ",
                   "range": [
-                    452,
-                    499
+                    440,
+                    487
                   ],
                   "loc": {
                     "start": {
@@ -771,8 +752,8 @@
                 "type": "Identifier",
                 "name": "cli",
                 "range": [
-                  502,
-                  505
+                  490,
+                  493
                 ],
                 "loc": {
                   "start": {
@@ -803,8 +784,8 @@
                             "type": "Identifier",
                             "name": "commander",
                             "range": [
-                              514,
-                              523
+                              502,
+                              511
                             ],
                             "loc": {
                               "start": {
@@ -821,8 +802,8 @@
                             "type": "Identifier",
                             "name": "parse",
                             "range": [
-                              524,
-                              529
+                              512,
+                              517
                             ],
                             "loc": {
                               "start": {
@@ -836,8 +817,8 @@
                             }
                           },
                           "range": [
-                            514,
-                            529
+                            502,
+                            517
                           ],
                           "loc": {
                             "start": {
@@ -858,8 +839,8 @@
                               "type": "Identifier",
                               "name": "process",
                               "range": [
-                                530,
-                                537
+                                518,
+                                525
                               ],
                               "loc": {
                                 "start": {
@@ -876,8 +857,8 @@
                               "type": "Identifier",
                               "name": "argv",
                               "range": [
-                                538,
-                                542
+                                526,
+                                530
                               ],
                               "loc": {
                                 "start": {
@@ -891,8 +872,8 @@
                               }
                             },
                             "range": [
-                              530,
-                              542
+                              518,
+                              530
                             ],
                             "loc": {
                               "start": {
@@ -907,8 +888,8 @@
                           }
                         ],
                         "range": [
-                          514,
-                          543
+                          502,
+                          531
                         ],
                         "loc": {
                           "start": {
@@ -922,8 +903,8 @@
                         }
                       },
                       "range": [
-                        514,
-                        544
+                        502,
+                        532
                       ],
                       "loc": {
                         "start": {
@@ -938,8 +919,8 @@
                     }
                   ],
                   "range": [
-                    508,
-                    548
+                    496,
+                    536
                   ],
                   "loc": {
                     "start": {
@@ -955,8 +936,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  505,
-                  548
+                  493,
+                  536
                 ],
                 "loc": {
                   "start": {
@@ -972,8 +953,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                502,
-                548
+                490,
+                536
               ],
               "loc": {
                 "start": {
@@ -990,8 +971,8 @@
                   "type": "Block",
                   "value": "*\n   * Runs the command line interface.\n   ",
                   "range": [
-                    452,
-                    499
+                    440,
+                    487
                   ],
                   "loc": {
                     "start": {
@@ -1010,7 +991,7 @@
           ],
           "range": [
             196,
-            550
+            538
           ],
           "loc": {
             "start": {
@@ -1025,7 +1006,7 @@
         },
         "range": [
           183,
-          550
+          538
         ],
         "loc": {
           "start": {
@@ -1061,7 +1042,7 @@
       },
       "range": [
         168,
-        550
+        538
       ],
       "loc": {
         "start": {
@@ -1098,7 +1079,7 @@
   "sourceType": "module",
   "range": [
     0,
-    550
+    538
   ],
   "loc": {
     "start": {
@@ -1151,8 +1132,8 @@
       "type": "Block",
       "value": "*\n   * Runs the command line interface.\n   ",
       "range": [
-        452,
-        499
+        440,
+        487
       ],
       "loc": {
         "start": {

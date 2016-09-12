@@ -514,7 +514,7 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n ",
+          "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n ",
           "range": [
             219,
             912
@@ -599,10 +599,10 @@
                 "type": "AssignmentPattern",
                 "left": {
                   "type": "Identifier",
-                  "name": "registerFunction",
+                  "name": "includeGlobal",
                   "range": [
                     958,
-                    974
+                    971
                   ],
                   "loc": {
                     "start": {
@@ -611,61 +611,7 @@
                     },
                     "end": {
                       "line": 23,
-                      "column": 61
-                    }
-                  }
-                },
-                "right": {
-                  "type": "Literal",
-                  "value": "register",
-                  "raw": "'register'",
-                  "range": [
-                    977,
-                    987
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 23,
-                      "column": 64
-                    },
-                    "end": {
-                      "line": 23,
-                      "column": 74
-                    }
-                  }
-                },
-                "range": [
-                  958,
-                  987
-                ],
-                "loc": {
-                  "start": {
-                    "line": 23,
-                    "column": 45
-                  },
-                  "end": {
-                    "line": 23,
-                    "column": 74
-                  }
-                }
-              },
-              {
-                "type": "AssignmentPattern",
-                "left": {
-                  "type": "Identifier",
-                  "name": "includeGlobal",
-                  "range": [
-                    991,
-                    1004
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 15
+                      "column": 58
                     }
                   }
                 },
@@ -674,22 +620,76 @@
                   "value": false,
                   "raw": "false",
                   "range": [
-                    1007,
+                    974,
+                    979
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 61
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 66
+                    }
+                  }
+                },
+                "range": [
+                  958,
+                  979
+                ],
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 45
+                  },
+                  "end": {
+                    "line": 23,
+                    "column": 66
+                  }
+                }
+              },
+              {
+                "type": "AssignmentPattern",
+                "left": {
+                  "type": "Identifier",
+                  "name": "registerFunction",
+                  "range": [
+                    983,
+                    999
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 18
+                    }
+                  }
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": "register",
+                  "raw": "'register'",
+                  "range": [
+                    1002,
                     1012
                   ],
                   "loc": {
                     "start": {
                       "line": 24,
-                      "column": 18
+                      "column": 21
                     },
                     "end": {
                       "line": 24,
-                      "column": 23
+                      "column": 31
                     }
                   }
                 },
                 "range": [
-                  991,
+                  983,
                   1012
                 ],
                 "loc": {
@@ -699,7 +699,7 @@
                   },
                   "end": {
                     "line": 24,
-                    "column": 23
+                    "column": 31
                   }
                 }
               }
@@ -3607,7 +3607,7 @@
               "loc": {
                 "start": {
                   "line": 24,
-                  "column": 28
+                  "column": 36
                 },
                 "end": {
                   "line": 59,
@@ -3774,10 +3774,10 @@
                   "type": "AssignmentPattern",
                   "left": {
                     "type": "Identifier",
-                    "name": "registerFunction",
+                    "name": "includeGlobal",
                     "range": [
                       958,
-                      974
+                      971
                     ],
                     "loc": {
                       "start": {
@@ -3786,61 +3786,7 @@
                       },
                       "end": {
                         "line": 23,
-                        "column": 61
-                      }
-                    }
-                  },
-                  "right": {
-                    "type": "Literal",
-                    "value": "register",
-                    "raw": "'register'",
-                    "range": [
-                      977,
-                      987
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 23,
-                        "column": 64
-                      },
-                      "end": {
-                        "line": 23,
-                        "column": 74
-                      }
-                    }
-                  },
-                  "range": [
-                    958,
-                    987
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 23,
-                      "column": 45
-                    },
-                    "end": {
-                      "line": 23,
-                      "column": 74
-                    }
-                  }
-                },
-                {
-                  "type": "AssignmentPattern",
-                  "left": {
-                    "type": "Identifier",
-                    "name": "includeGlobal",
-                    "range": [
-                      991,
-                      1004
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 24,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 24,
-                        "column": 15
+                        "column": 58
                       }
                     }
                   },
@@ -3849,22 +3795,76 @@
                     "value": false,
                     "raw": "false",
                     "range": [
-                      1007,
+                      974,
+                      979
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 61
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 66
+                      }
+                    }
+                  },
+                  "range": [
+                    958,
+                    979
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 45
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 66
+                    }
+                  }
+                },
+                {
+                  "type": "AssignmentPattern",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "registerFunction",
+                    "range": [
+                      983,
+                      999
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 24,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 18
+                      }
+                    }
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": "register",
+                    "raw": "'register'",
+                    "range": [
+                      1002,
                       1012
                     ],
                     "loc": {
                       "start": {
                         "line": 24,
-                        "column": 18
+                        "column": 21
                       },
                       "end": {
                         "line": 24,
-                        "column": 23
+                        "column": 31
                       }
                     }
                   },
                   "range": [
-                    991,
+                    983,
                     1012
                   ],
                   "loc": {
@@ -3874,7 +3874,7 @@
                     },
                     "end": {
                       "line": 24,
-                      "column": 23
+                      "column": 31
                     }
                   }
                 }
@@ -6782,7 +6782,7 @@
                 "loc": {
                   "start": {
                     "line": 24,
-                    "column": 28
+                    "column": 36
                   },
                   "end": {
                     "line": 59,
@@ -6841,7 +6841,7 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n ",
+            "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n ",
             "range": [
               219,
               912
@@ -6894,7 +6894,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n ",
+      "value": "*\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n ",
       "range": [
         219,
         912

@@ -57,13 +57,13 @@ import logger from &apos;./logger&apos;;
  * @param {string} keyword - Keyword to use when searching for extensions to
  * register.
  * @param {Object} object - Object to pass to the register function.
- * @param {string} [registerFunction=register] - Name of the register function
- * used during extension registration.
  * @param {boolean} [includeGlobal=false] - Determines if global packages
  * should be registered.
+ * @param {string} [registerFunction=register] - Name of the register function
+ * used during extension registration.
  */
-const registerExtensions = (keyword, object, registerFunction = &apos;register&apos;,
-  includeGlobal = false) =&gt; {
+const registerExtensions = (keyword, object, includeGlobal = false,
+  registerFunction = &apos;register&apos;) =&gt; {
   const dependencyNames = [
     ...Object.keys(pkgConf.sync(&apos;dependencies&apos;)),
     ...Object.keys(pkgConf.sync(&apos;devDependencies&apos;)),

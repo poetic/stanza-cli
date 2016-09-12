@@ -44,7 +44,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import findUp from 'find-up';\nimport glob from 'glob';\nimport globalModules from 'global-modules';\nimport path from 'path';\nimport pkgConf from 'pkg-conf';\nimport resolve from 'resolve';\nimport logger from './logger';\n\n/**\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n */\nconst registerExtensions = (keyword, object, registerFunction = 'register',\n  includeGlobal = false) => {\n  const dependencyNames = [\n    ...Object.keys(pkgConf.sync('dependencies')),\n    ...Object.keys(pkgConf.sync('devDependencies')),\n  ];\n\n  const dependencies = dependencyNames.map(name => {\n    try {\n      return resolve.sync(name);\n    } catch (error) {\n      logger.info(`Error trying to resolve dependency ${name}. Continuing...`);\n    }\n\n    return name;\n  }).filter(Boolean);\n\n  if (includeGlobal) {\n    const globalPackages = glob.sync('*/package.json', { cwd: globalModules,\n      realpath: true });\n\n    dependencies.push(...globalPackages);\n  }\n\n  dependencies.forEach(dependency => {\n    const dependencyPath = path.dirname(dependency);\n    const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });\n    const pkg = require(packageJsonPath); // eslint-disable-line global-require\n\n    if (pkg.keywords && pkg.keywords.includes(keyword)) {\n      const extensionPath = path.dirname(packageJsonPath);\n      const extension = require(extensionPath); // eslint-disable-line global-require\n\n      extension[registerFunction](object, dependencyPath);\n    }\n  });\n};\n\nexport default registerExtensions;\n"
+    "content": "import findUp from 'find-up';\nimport glob from 'glob';\nimport globalModules from 'global-modules';\nimport path from 'path';\nimport pkgConf from 'pkg-conf';\nimport resolve from 'resolve';\nimport logger from './logger';\n\n/**\n * Searches project dependencies for modules that contain the passed keyword\n * with an optional parameter to search globally installed modules as well.\n * Passes an object into the register function of the resultant extensions\n * allowing those extensions to register themselves against the passed object.\n *\n * @param {string} keyword - Keyword to use when searching for extensions to\n * register.\n * @param {Object} object - Object to pass to the register function.\n * @param {boolean} [includeGlobal=false] - Determines if global packages\n * should be registered.\n * @param {string} [registerFunction=register] - Name of the register function\n * used during extension registration.\n */\nconst registerExtensions = (keyword, object, includeGlobal = false,\n  registerFunction = 'register') => {\n  const dependencyNames = [\n    ...Object.keys(pkgConf.sync('dependencies')),\n    ...Object.keys(pkgConf.sync('devDependencies')),\n  ];\n\n  const dependencies = dependencyNames.map(name => {\n    try {\n      return resolve.sync(name);\n    } catch (error) {\n      logger.info(`Error trying to resolve dependency ${name}. Continuing...`);\n    }\n\n    return name;\n  }).filter(Boolean);\n\n  if (includeGlobal) {\n    const globalPackages = glob.sync('*/package.json', { cwd: globalModules,\n      realpath: true });\n\n    dependencies.push(...globalPackages);\n  }\n\n  dependencies.forEach(dependency => {\n    const dependencyPath = path.dirname(dependency);\n    const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });\n    const pkg = require(packageJsonPath); // eslint-disable-line global-require\n\n    if (pkg.keywords && pkg.keywords.includes(keyword)) {\n      const extensionPath = path.dirname(packageJsonPath);\n      const extension = require(extensionPath); // eslint-disable-line global-require\n\n      extension[registerFunction](object, dependencyPath);\n    }\n  });\n};\n\nexport default registerExtensions;\n"
   },
   {
     "__docId__": 3,
@@ -84,18 +84,6 @@
       {
         "nullable": null,
         "types": [
-          "string"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "register",
-        "defaultRaw": "register",
-        "name": "registerFunction",
-        "description": "Name of the register function\nused during extension registration."
-      },
-      {
-        "nullable": null,
-        "types": [
           "boolean"
         ],
         "spread": false,
@@ -104,6 +92,18 @@
         "defaultRaw": false,
         "name": "includeGlobal",
         "description": "Determines if global packages\nshould be registered."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "register",
+        "defaultRaw": "register",
+        "name": "registerFunction",
+        "description": "Name of the register function\nused during extension registration."
       }
     ],
     "type": {
@@ -123,7 +123,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import commander from 'commander';\nimport packageJson from '../package.json';\nimport registerExtensions from './imports/register-extensions';\n\n/**\n * Stanza class.\n */\nexport default class Stanza {\n  /**\n   * Initializes commander and registers extensions.\n   */\n  constructor() {\n    commander\n      .version(packageJson.version)\n      .description(packageJson.description);\n\n    registerExtensions('stanza-extension', this, 'register', true);\n  }\n\n  /**\n   * Runs the command line interface.\n   */\n  cli() {\n    commander.parse(process.argv);\n  }\n}\n"
+    "content": "import commander from 'commander';\nimport packageJson from '../package.json';\nimport registerExtensions from './imports/register-extensions';\n\n/**\n * Stanza class.\n */\nexport default class Stanza {\n  /**\n   * Initializes commander and registers extensions.\n   */\n  constructor() {\n    commander\n      .version(packageJson.version)\n      .description(packageJson.description);\n\n    registerExtensions('stanza-extension', this, true);\n  }\n\n  /**\n   * Runs the command line interface.\n   */\n  cli() {\n    commander.parse(process.argv);\n  }\n}\n\n"
   },
   {
     "__docId__": 5,
