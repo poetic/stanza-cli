@@ -18,7 +18,11 @@ export default class Stanza {
       .version(packageJson.version)
       .description(packageJson.description);
 
-    registerExtensions('stanza-extension', this, { includeGlobal: true });
+    this.registeredExtension = registerExtensions(
+      'stanza-extension',
+      this,
+      { includeGlobal: true }
+    );
   }
 
   /**

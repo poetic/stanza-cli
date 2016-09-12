@@ -31,13 +31,15 @@ const registerExtensions = (keyword, object, options = {}) => {
   ];
 
   const dependencies = dependencyNames.map(name => {
+    let dependencyPath = undefined;
+
     try {
-      return resolve.sync(name);
+      dependencyPath = resolve.sync(name);
     } catch (error) {
       logger.info(`Error trying to resolve dependency ${name}. Continuing...`);
     }
 
-    return name;
+    return dependencyPath;
   }).filter(Boolean);
 
   if (includeGlobal) {
@@ -47,7 +49,9 @@ const registerExtensions = (keyword, object, options = {}) => {
     dependencies.push(...globalPackages);
   }
 
-  dependencies.forEach(dependency => {
+  return dependencies.map(dependency => {
+    let registeredExtension = undefined;
+
     const dependencyPath = path.dirname(dependency);
     const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });
     const pkg = require(packageJsonPath); // eslint-disable-line global-require
@@ -56,9 +60,16 @@ const registerExtensions = (keyword, object, options = {}) => {
       const extensionPath = path.dirname(packageJsonPath);
       const extension = require(extensionPath); // eslint-disable-line global-require
 
-      extension[registerFunction](object, dependencyPath);
+
+      try {
+        registeredExtension = extension[registerFunction](object, dependencyPath);
+      } catch (e) {
+        logger.error(`No register function found for extension ${dependency}`);
+      }
     }
-  });
+
+    return registeredExtension;
+  }).filter(Boolean);
 };
 
 export default registerExtensions;
