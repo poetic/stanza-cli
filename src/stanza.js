@@ -14,7 +14,7 @@ export default class Stanza {
       .version(packageJson.version)
       .description(packageJson.description);
 
-    registerExtensions('stanza-extension', this, 'register', true);
+    registerExtensions('stanza-extension', this, true);
   }
 
   /**
@@ -24,3 +24,4 @@ export default class Stanza {
     commander.parse(process.argv);
   }
 }
+
