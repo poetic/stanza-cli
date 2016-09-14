@@ -31,5 +31,22 @@ export default class Stanza {
   cli() {
     commander.parse(process.argv);
   }
+
+  get projectRoot() {
+    if (typeof this._projectRoot !== 'undefined') {
+      return this._projectRoot;
+    }
+
+    const packageConfig = pkgConf.sync('keywords');
+    const isStanzaProject = Object.keys(packageConfig)
+      .map(key => packageConfig[key])
+      .includes('stanza-project');
+
+    this._projectRoot = isStanzaProject
+      ? path.dirname(pkgConf.filepath(packageConfig))
+      : false;
+
+    return this._projectRoot;
+  }
 }
 
