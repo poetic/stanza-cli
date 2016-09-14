@@ -49,8 +49,13 @@ const registerExtensions = (keyword, object, options = {}) => {
   }).filter(Boolean);
 
   if (includeGlobal) {
-    const globalPackages = glob.sync('*/package.json', { cwd: globalModules,
-      realpath: true });
+    const globalPackages = glob.sync(
+      '*/package.json',
+      {
+        cwd: globalModules,
+        realpath: true,
+      }
+    );
 
     dependencies.push(...globalPackages);
   }
