@@ -66,11 +66,10 @@ const registerExtensions = (keyword, object, options = {}) => {
       const extensionPath = path.dirname(packageJsonPath);
       const extension = require(extensionPath); // eslint-disable-line global-require
 
-
-      try {
-        registeredExtension = extension[registerFunction](object, dependencyPath);
-      } catch (e) {
-        logger.error(`No register function found for extension ${dependency}`);
+      if (extension[registerFunction]) {
+        registeredExtension = extension[registerFunction](object, keyword);
+      } else {
+        logger.warn(`No register function found for extension ${dependency}`);
       }
     }
 
