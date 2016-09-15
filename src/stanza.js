@@ -1,7 +1,9 @@
 import commander from 'commander';
-import packageJson from '../package.json';
-import registerExtensions from './imports/register-extensions';
 import logger from './imports/logger';
+import packageJson from '../package.json';
+import path from 'path';
+import pkgConf from 'pkg-conf';
+import registerExtensions from './imports/register-extensions';
 
 /**
  * Stanza class.
