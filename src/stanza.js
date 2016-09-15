@@ -23,7 +23,9 @@ export default class Stanza {
     this.extensions = registerExtensions(
       'stanza-extension',
       this,
-      { includeGlobal: true }
+      {
+        includeGlobal: true,
+      }
     );
   }
 
