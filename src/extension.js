@@ -12,11 +12,11 @@ class Extension {
    * with and the module keyword; Run discoverChildren to register commands and
    * generators with Stanza.
    *
-   * @name constructor
-   * @memberof Extension
+   * @param {string} name Extension Name
    * @param {Object} registerWithObject Object in which to register commands and
    * generators with. i.e Stanza
-   * @param {string} keyword If register another extension, what type?
+   * @param {string} keyword If registering another extension, what type?
+   * @param {string} extensionPath Absolute path of class extending Extension
    * @returns {undefined}
    */
   constructor(name, registerWithObject, keyword, extensionPath) {
@@ -37,7 +37,6 @@ class Extension {
    * Find extenstion commands and register them with Stanza
    *
    * @name discoverCommands
-   * @memberof Extension
    * @returns {undefined}
    */
   discoverCommands() {
@@ -68,7 +67,6 @@ class Extension {
    * Find extenstion generators and register them with Stanza
    *
    * @name discoverGenerators
-   * @memberof Extension
    * @returns {undefined}
    */
   discoverGenerators() {
