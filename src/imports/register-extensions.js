@@ -31,7 +31,7 @@ const registerExtensions = (keyword, object, options = {}) => {
   ];
 
   const dependencies = dependencyNames.map(name => {
-    let dependencyPath = undefined;
+    let dependencyPath;
 
     const resolveOptions = {};
 
@@ -42,7 +42,7 @@ const registerExtensions = (keyword, object, options = {}) => {
     try {
       dependencyPath = resolve.sync(name, resolveOptions);
     } catch (error) {
-      logger.info(`Error trying to resolve dependency ${name}. Continuing...`);
+      logger.debug(`Error trying to resolve dependency ${name}. Continuing...`);
     }
 
     return dependencyPath;
@@ -61,7 +61,7 @@ const registerExtensions = (keyword, object, options = {}) => {
   }
 
   return dependencies.map(dependency => {
-    let registeredExtension = undefined;
+    let registeredExtension;
 
     const dependencyPath = path.dirname(dependency);
     const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });
