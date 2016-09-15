@@ -16,9 +16,9 @@ import logger from './logger';
  * register.
  * @param {Object} object - Object to pass to the register function.
  * @param {Object} options - Object with optional paramsts
- * @param {boolean} options[includeGlobal=false] - Determines if global packages
+ * @param {boolean} options.includeGlobal - Determines if global packages
  * should be registered.
- * @param {string} options[registerFunction=register] - Name of the register function
+ * @param {string} options.registerFunction - Name of the register function
  * used during extension registration.
  */
 const registerExtensions = (keyword, object, options = {}) => {
