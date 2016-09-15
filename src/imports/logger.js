@@ -7,7 +7,7 @@ logger.add(winston.transports.Console, {
   level: 'debug',
   prettyPrint: true,
   silent: false,
-  timestamp: false,
+  timestamp: true,
 });
 
 export default logger;
