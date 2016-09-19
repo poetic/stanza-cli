@@ -13,13 +13,26 @@ export default class Stanza {
    * Initializes commander and registers extensions.
    */
   constructor() {
-    this.logger = logger;
-    this.commander = commander;
-
     commander
       .version(packageJson.version)
       .description(packageJson.description);
 
+    /**
+     * Winston logger
+     *
+     */
+    this.logger = logger;
+
+    /**
+     * Commanderjs available for extensions to register with
+     *
+     */
+    this.commander = commander;
+
+    /**
+     * Array of registered extensions
+     *
+     */
     this.extensions = registerExtensions(
       'stanza-extension',
       this,
@@ -36,6 +49,13 @@ export default class Stanza {
     commander.parse(process.argv);
   }
 
+  /**
+   * Get the root path where Stanza is running
+   *
+   * @name projectRoot
+   * @function
+   * @returns {string} String representing root path of where Stanza is running
+   */
   get projectRoot() {
     if (typeof this._projectRoot !== 'undefined') {
       return this._projectRoot;
