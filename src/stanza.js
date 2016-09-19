@@ -18,20 +18,17 @@ export default class Stanza {
       .description(packageJson.description);
 
     /**
-     * Winston logger
-     *
+     * @type {Object} Winston logger
      */
     this.logger = logger;
 
     /**
-     * Commanderjs available for extensions to register with
-     *
+     * @type {Object} Commanderjs
      */
     this.commander = commander;
 
     /**
-     * Array of registered extensions
-     *
+     * @type {Extension[]} Registered Extensions
      */
     this.extensions = registerExtensions(
       'stanza-extension',
