@@ -4,7 +4,7 @@ import resolve from 'resolve';
 /**
  * Class representing an Extension
 * */
-class Extension {
+export default class Extension {
   /**
    * When an extension is instantiated, pass in the object in which to register
    * with and the module keyword
@@ -50,5 +50,3 @@ class Extension {
     });
   }
 }
-
-export default Extension;
