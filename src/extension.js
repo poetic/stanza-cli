@@ -16,30 +16,29 @@ export default class Extension {
    * @param {string} extensionPath Absolute path of class extending Extension
    * @returns {undefined}
    */
-  constructor(name, registerWithObject, keyword, extensionPath) {
+  constructor(name, registerWithObject, keyword) {
     this._name = name;
-    this._extensionPath = extensionPath;
     this._registerWithObject = registerWithObject;
     this._keyword = keyword;
 
     this._commands = [];
-
-    this.discoverCommands();
   }
 
   /**
-   * Find extension commands and instantiate the class, pass command to the
-   * Class; Commands are responsible for registering with Stanza
+   * Discover commands belonging to this extension and pass Commander to them;
+   * Commands are responsible for registering themselfs with Commanderjs
    *
    * @name discoverCommands
-   * @returns {undefined}
+   * @function
+   * @param {string} path The extensions absolute path
    */
-  discoverCommands() {
-    const commands = glob.sync('commands/*.js', { cwd: this._extensionPath });
+  discoverCommands(path) {
+    const commands = glob.sync('*.js', { cwd: path });
 
     this._commands = commands.map(commandFileName => {
-      const commandPath = resolve.sync(`${this._extensionPath}/${commandFileName}`);
+      const commandPath = resolve.sync(`${path}/${commandFileName}`);
       const Command = require(commandPath).default;
+
       const command = new Command(
         this._name,
         this._extensionPath,
