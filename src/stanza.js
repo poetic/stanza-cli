@@ -61,7 +61,7 @@ export default class Stanza {
     const packageConfig = pkgConf.sync('keywords');
     const isStanzaProject = Object.keys(packageConfig)
       .map(key => packageConfig[key])
-      .includes('stanza-project');
+      .find(keyword => keyword === 'stanza-project' || keyword === 'stanza-extension');
 
     this._projectRoot = isStanzaProject
       ? path.dirname(pkgConf.filepath(packageConfig))
