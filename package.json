@@ -1,11 +1,13 @@
 {
   "name": "stanza",
   "version": "2.0.0",
+  "private": true,
+  "author": "Poetic Systems",
   "description": "Stanza is a highly extensible cli that accelerates development workflows.",
-  "main": "./src/stanza.js",
   "engines": {
     "node": ">=6.0.0"
   },
+  "main": "./src/stanza.js",
   "bin": {
     "stanza": "bin/stanza"
   },
@@ -15,8 +17,6 @@
     "docs": "esdoc -c .esdoc.json",
     "gh-pages": "gh-pages -d docs"
   },
-  "private": true,
-  "author": "Poetic Systems",
   "devDependencies": {
     "esdoc": "^0.4.8",
     "eslint": "^3.4.0",
