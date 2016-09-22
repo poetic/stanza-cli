@@ -15,36 +15,54 @@ import logger from './logger';
  * @param {string} keyword - Keyword to use when searching for extensions to
  * register.
  * @param {Object} object - Object to pass to the register function.
- * @param {boolean} [includeGlobal=false] - Determines if global packages
+ * @param {Object} options - Object with optional paramsts
+ * @param {boolean} options.includeGlobal - Determines if global packages
  * should be registered.
- * @param {string} [registerFunction=register] - Name of the register function
+ * @param {string} options.registerFunction - Name of the register function
  * used during extension registration.
  */
-const registerExtensions = (keyword, object, includeGlobal = false,
-  registerFunction = 'register') => {
+const registerExtensions = (keyword, object, options = {}) => {
+  const includeGlobal = options.includeGlobal || false;
+  const registerFunction = options.registerFunction || 'register';
+
   const dependencyNames = [
     ...Object.keys(pkgConf.sync('dependencies')),
     ...Object.keys(pkgConf.sync('devDependencies')),
   ];
 
   const dependencies = dependencyNames.map(name => {
-    try {
-      return resolve.sync(name);
-    } catch (error) {
-      logger.info(`Error trying to resolve dependency ${name}. Continuing...`);
+    let dependencyPath;
+
+    const resolveOptions = {};
+
+    if (object.projectRoot) {
+      resolveOptions.basedir = object.projectRoot;
     }
 
-    return name;
+    try {
+      dependencyPath = resolve.sync(name, resolveOptions);
+    } catch (error) {
+      logger.debug(`Error trying to resolve dependency ${name}. Continuing...`);
+    }
+
+    return dependencyPath;
   }).filter(Boolean);
 
   if (includeGlobal) {
-    const globalPackages = glob.sync('*/package.json', { cwd: globalModules,
-      realpath: true });
+    const globalPackages = glob.sync(
+      '*/package.json',
+      {
+        cwd: globalModules,
+        realpath: true,
+      }
+    );
 
     dependencies.push(...globalPackages);
   }
 
-  dependencies.forEach(dependency => {
+  return dependencies.map(dependency => {
+    let registeredExtension;
+
     const dependencyPath = path.dirname(dependency);
     const packageJsonPath = findUp.sync('package.json', { cwd: dependencyPath });
     const pkg = require(packageJsonPath); // eslint-disable-line global-require
@@ -53,9 +71,16 @@ const registerExtensions = (keyword, object, includeGlobal = false,
       const extensionPath = path.dirname(packageJsonPath);
       const extension = require(extensionPath); // eslint-disable-line global-require
 
-      extension[registerFunction](object, dependencyPath);
+      if (typeof extension[registerFunction] === 'function') {
+        registeredExtension = extension[registerFunction](object, keyword);
+      } else {
+        logger.warn(`No function named ${registerFunction} found on
+          ${dependency}`);
+      }
     }
-  });
+
+    return registeredExtension;
+  }).filter(Boolean);
 };
 
 export default registerExtensions;
