@@ -74,8 +74,8 @@ const registerExtensions = (keyword, object, options = {}) => {
       if (typeof extension[registerFunction] === 'function') {
         registeredExtension = extension[registerFunction](object, keyword);
       } else {
-        logger.warn(`No function named ${registerFunction} found on
-          ${dependency}`);
+        logger.warn(`No function named "${registerFunction}" found in extension
+          "${pkg.name}"`);
       }
     }
 
