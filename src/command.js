@@ -20,6 +20,9 @@ export default class Command {
    * @return {undefined}
    */
   setCommand(command) {
+    /**
+     * @type {string} Command pattern
+     */
     this.command = command;
   }
 
@@ -39,6 +42,9 @@ export default class Command {
    * @return {undefined}
    */
   setDescription(description) {
+    /**
+     * @type {string} Command description
+     */
     this.description = description;
   }
 
@@ -58,6 +64,9 @@ export default class Command {
    * @return {undefined}
    */
   setAction(action) {
+    /**
+     * @type {function} Function to call when the command is called
+     */
     this.action = action;
   }
 
