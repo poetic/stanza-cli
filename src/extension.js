@@ -28,9 +28,8 @@ export default class Extension {
    * Discover commands belonging to this extension and pass Commander to them;
    * Commands are responsible for registering themselfs with Commanderjs
    *
-   * @name discoverCommands
-   * @function
    * @param {string} path The extensions absolute path
+   * @return {string}
    */
   discoverCommands(path) {
     const commands = glob.sync('*.js', { cwd: path });
